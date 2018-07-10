@@ -1,0 +1,176 @@
+% The Slide Definitions
+\input{course_definitions}
+
+% Author and Course information
+\input{course_information}
+
+% Presentation title
+\title{Objektorientierung (II) und Modularisierung}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Gliederung}
+    \setbeamertemplate{section in toc}[sections numbered]
+    \tableofcontents
+\end{frame}
+
+% ---- Rückblick ----
+\section{Rückblick: Objektorientierung}
+
+\begin{frame}{Objekte und Klassen}
+    \begin{itemize}
+	\item \textbf{Objekte} haben Eigenschaften (\textbf{Attribute}) und Verhalten (\textbf{Methoden})
+	\item Objekte als \textbf{Instanzen} (Ausprägungen) einer \textbf{Klasse} 
+	\item Klassen als \glqq Schablone\grqq{} oder \glqq Bauplan\grqq{} für Objekte
+	\item Objekte einer Klasse haben gleiche Attribute, die einen unterschiedlichen Wert haben können
+    \end{itemize}
+    \includegraphics[width=\textwidth]{dice.jpg}
+\end{frame}
+
+  %  \begin{center}
+  %      \includegraphics[width=0.5\textwidth]{d6.jpg}
+  %  \end{center}
+  %  \includegraphics[width=\textwidth]{dice.jpg}
+
+\begin{frame}{Aufgabenstellung}
+    \begin{enumerate}
+        \item Implementiere die Würfelklasse und erzeuge einige Würfel und würfel!
+        \item Schreibe eine Klasse \glqq Spieler\grqq!
+        \item Erweitere dein Würfelspiel, sodass zwei Spielerobjekte gegeneinander spielen.
+        \item Auch abstrakte Konzepte können als Klasse modelliert werden. Wie könnte man ein Würfelspiel mit mehreren Runden als Klasse darstellen?
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]{Lösung}
+    \begin{lstlisting}
+from random import randint
+
+class Wuerfel:
+    def __init__(self, seiten):
+        self.seiten = seiten
+
+    def wuerfeln(self):
+        return randint(1, self.seiten)
+
+
+d6 = Wuerfel(6)
+d20 = Wuerfel(20)
+
+print("Du hast eine {} gewürfelt!".format(d20.wuerfeln()))
+
+d20.seiten = 12
+print(d20.seiten)
+    \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{Lösung}
+	\begin{lstlisting}
+class Spieler:
+    def __init__(self, name, wuerfel):
+        self.name = name
+        self.wuerfel = wuerfel
+
+    def wuerfel_wecheln(self, wuerfel):
+        self.wuerfel = wuerfel
+
+    def wuerfeln(self):
+        return self.wuerfel.wuerfeln()
+
+
+d20 = Wuerfel(20)
+spieler = Spieler("Laucian", d20)
+
+wurf = spieler.wuerfeln()
+print("{} hat eine {} gewürfelt!".format(spieler.name, wurf))
+spieler.wuerfel = Wuerfel(12)
+	\end{lstlisting}
+\end{frame}
+
+% ----------------------- Modularisierung in Python -----------------------
+
+\section{Modularisierung}
+
+\begin{frame}{Motivation}
+	\begin{itemize}
+		\item Struktur und Übersichtlichkeit 
+		\item Wiederverwendung (z.B. mathematische Funktionen)
+		\item Nutzung von Bibliotheken (z.B. random)
+		\item (einheitliche) Definition von Konstanten, Klassen, etc.
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Module einbinden}
+	\begin{lstlisting}
+from random import randint
+print(randint(1, 10))
+
+from wuerfel import *
+d20 = Wuerfel(20)
+print(d20.wuerfeln())
+
+import spieler
+spieler = spieler.Spieler("Arndt", d20)
+print(spieler.name)
+	\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{Boilerplate}
+	\begin{lstlisting}
+class Wuerfel:
+    def __init__(self, seiten):
+        self.seiten = seiten
+	
+    # weitere Methoden
+
+if __name__ == '__main__': # Boilerplate
+    # Code wird beim Importieren nicht ausgeführt
+    d20 = Wuerfel(20)
+    print(d20.wuerfeln())
+	\end{lstlisting}
+
+	\texttt{\_\_name\_\_} enthält den Namen des Scriptes beim Importieren
+	oder \texttt{'\_\_main\_\_'}, wenn das Script direkt ausgeführt wird.
+
+\end{frame}
+
+
+% --------------------- Aufgaben -------------------------
+
+\section{Aufgaben}
+
+\begin{frame}{Aufgaben}
+	\begin{enumerate}
+		\item Erweitere die Spielerklasse, sodass ein Spieler mehrere Würfel besitzen kann. Wenn er würfelt, so soll er mit allen Würfeln nacheinander würfeln und eine Ergebnisliste zurückbekommen.
+		\item Modelliert das Würfelspiel als eigene Klasse.
+			\begin{enumerate}
+				\item Das Spiel sollte (min.) zwei Spieler umfassen, die in Runden gegeneinander spielen.
+				\item Wie ist der jeweilige Zwischenstand?
+				\item Wie sieht eine Runde aus? Würfeln die Spieler mit einem Würfel? Mit mehreren? Gewinnt die höchste Summe? Oder der höchste Wert?
+				\item Strukturiert euren Code so, dass die Änderung, was eine Runde ist, möglichst wenig Änderungen im Code bedeutet.
+			\end{enumerate}
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Aufgaben}
+	\begin{enumerate}
+		\setcounter{enumi}{3}
+		\item Modifiziert eure Spieler, um folgende Sachverhalte zu modellieren.
+			\begin{enumerate}
+				\item Wenn ein Spieler mit \textit{Vorteil} würfelt, so würfelt er zweimal und der höhere Wert zählt. Gleichermaßen kann er einen \textit{Nachteil} haben (niedrigerer Wert). Vorteil und Nachteil gleichzeitig führen zu einem normalen Würfelwurf.
+				\item Ein Spieler verfügt über einen \textit{Bonus}, der zu jedem Wurf dazu addiert wird.
+				\item Ein Spieler kann seinen Bonus erhöhen, Vorteil oder Nachteil erhalten oder verlieren.
+			\end{enumerate}
+		\item Wie viel Bonus braucht ein Spieler, damit das Spiel ausgeglichen ist, wenn sein Gegner Vorteil auf jeden Wurf hat? Wie viel, wenn unser Spieler gleichzeitig Nachteil hat?
+		\item Überlegt euch weitere (interessante) Würfelspiele.
+	\end{enumerate}
+\end{frame}
+
+\end{document}

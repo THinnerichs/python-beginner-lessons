@@ -1,0 +1,98 @@
+% The Slide Definitions
+\input{course_definitions}
+
+% Author and Course information
+\input{course_information}
+
+% Presentation title
+\title{Verwenden von Bibliotheken: Matplotlib}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Rückblick}
+
+\begin{frame}{Aufgaben}
+	\begin{enumerate}
+		\item Erweitere die Spielerklasse, sodass ein Spieler mehrere Würfel besitzen kann. Wenn er würfelt, so soll er mit allen Würfeln nacheinander würfeln und eine Ergebnisliste zurückbekommen.
+		\item Modelliert das Würfelspiel als eigene Klasse.
+	\end{enumerate}
+    $\hookrightarrow$ Lösung in Snippets
+\end{frame}
+
+\begin{frame}[fragile]{Module einbinden}
+	\begin{lstlisting}
+from random import randint
+print(randint(1, 10))
+
+from wuerfel import *
+d20 = Wuerfel(20)
+print(d20.wuerfeln())
+
+import spieler
+spieler = spieler.Spieler("Arndt", d20)
+print(spieler.name)
+	\end{lstlisting}
+\end{frame}
+
+\section{matplotlib}
+
+\begin{frame}{Motivation}
+    \begin{itemize}
+        \item Mit Python berechnete Daten plotten:
+        \begin{figure}[h]
+            \includegraphics[width = .7\linewidth]{spielplot}
+        \end{figure}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Einfaches Beispiel}
+    \begin{lstlisting}
+from matplotlib import pyplot
+pyplot.plot([1,2,3,4], [1,4,9,16], 'ro')
+pyplot.axis([0, 6, 0, 20])
+pyplot.show()
+    \end{lstlisting}
+
+    \begin{figure}[h]
+        \includegraphics[width=.5\linewidth]{matplotlib_example1}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Matplotlib instalieren}
+    Linux (Ubuntu):
+    \begin{lstlisting}
+        pip3 install --user matplotlib
+    \end{lstlisting}
+
+    Windows:
+    \begin{lstlisting}
+        python.exe -m pip install matplotlib
+    \end{lstlisting}
+    Matplotlib Tutorial: \url{https://matplotlib.org/users/pyplot_tutorial.html}
+\end{frame}
+
+\section{Aufgaben}
+
+\begin{frame}{Aufgaben}
+    \begin{enumerate}
+        \item Erstelle ein Diagramm, in dem der Entstand eines Spiels nach der Simulation (\texttt{.simuliere()}) für jeden Spieler dargestellt ist.
+        \item Erstelle ein Diagramm, in dem der Punktestand aller Spieler im zeitlichen Verlauf dargestellt ist (s. Beispiel in dieser Präsentation)
+        \item Füge einen schummelnden Spieler zu deinem Spiel hinzu:
+            \begin{enumerate}
+                \item Mehr Würfel
+                \item Andere Seitenzahl
+                \item seid kreativ $\dots$
+            \end{enumerate}
+            Wie wirkt sich das Schummeln bei den verschiedenen Wertungsmodi aus? \\
+            (\texttt{"wuerfelsumme"}, \texttt{"wuerfelmaximum"}, \texttt{"paschzahl"})\\
+            Dies wird bei höherer Rundenzahl möglicherweise deutlicher.
+    \end{enumerate}
+\end{frame}
+
+
+
+\end{document}

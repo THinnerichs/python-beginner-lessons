@@ -1,0 +1,159 @@
+% The Slide Definitions
+\input{course_definitions}
+
+% Author and Course information
+\input{course_information}
+
+% Presentation title
+\title{Kontrollstrukturen}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Gliederung}
+    \setbeamertemplate{section in toc}[sections numbered]
+    \tableofcontents
+\end{frame}
+
+% ---- Einführung Kontrollstrukturen ----
+\section{Was sind Kontrollstrukturen?}
+\begin{frame}{Wozu?}
+    \begin{itemize}
+        \item Strukturieren Programmverhalten
+        \item für alle imperativen Sprachen ähnlich
+        \item z.B.: Verzweigung, Zählschleife
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Kontrollstrukturen in Python}
+    Python kennt:
+    \begin{itemize}
+        \item Ein- / Zweiseitige Verzweigung: \texttt{if .. : / if .. : .. else: ..}
+        \item Zählschleife: \texttt{for .. in .. :}
+        \item Kopfgesteuerte Schleife: \texttt{while .. :}
+    \end{itemize}
+\end{frame}
+% ----------------------- Der Python Interpreter ------------------------------
+\section{Verzweigungen ("{}If-Statements"{})}
+\begin{frame}[fragile]{Einseitige Verzweigungen}
+    \begin{lstlisting}
+    if a == b:
+        print ("a is equal to b!")
+    print ("this is printed every time. bye.")
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Zweiseitige Verzweigungen}
+    \begin{lstlisting}
+    if a == b:
+        print ("a is equal to b!")
+    else:
+        print ("a is not equal to b!")
+        # be careful: 1 == 1, but 1 != "1" !
+    
+    print ("this is printed every time. bye.")
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Verschachtelte Verzweigungen}
+    \begin{lstlisting}
+    if a < b:
+        print ("a is less than b!")
+    else:
+        if a == b:
+            print ("a == b!")
+        print ("a >= b!")
+        # is also executed when a == b! 
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Kurzform elif Verzweigungen}
+    Oder mit \texttt{elif}:
+    \begin{lstlisting}
+    if a < b:
+        print ("a is less than b!")
+    elif a == b:
+        print ("a == b!")
+    else:
+        print ("a > b!")
+        # is not if when a == b! 
+    \end{lstlisting}
+\end{frame}
+
+\section{While-Schleife}
+
+\begin{frame}[fragile]{While-Schleife}
+    $\rightarrow$ Wiederholt, solange Bedingung erfüllt ist:
+    \begin{lstlisting}
+    a = 10
+    while a > -1:
+        a -= 1
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Vorzeitiges Abbrechen} 
+    \begin{lstlisting}
+    a = 10
+    while a > -1:
+        a -= 1
+        if a > 3:
+            continue # jump to next interation
+        print ("countdown:", a) # only printed for 3,2,1
+        if a == 1:
+            break # break out of loop immediately
+    \end{lstlisting}
+\end{frame}
+
+\section{Intermezzo: Listen}
+
+\begin{frame}{Was sind Listen?}
+    Wie alltägliche Listen. In Python:
+    \begin{itemize}
+        \item \texttt{[]}, bzw. \texttt{[1,2,3]}
+        \item Methoden: \texttt{insert(), append(), pop(), remove(), index()}
+        \item siehe auch \texttt{help([])}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Wie verwende ich Listen}
+    \begin{lstlisting}
+    a = [1,5,3,2] # create new list
+    a.sort() # a is now sorted
+    print (a[3]) # 4th element of sorted list -> 5
+    highest = a.pop() # removes last element (5) and returns it
+    highest += 1
+    a.insert(0, highest) # add 6 at the start
+    print (a) # -> [6,1,2,3]
+    \end{lstlisting}
+\end{frame}
+
+\section{For-Schleife}
+
+\begin{frame}[fragile]{For-Schleife}
+    Klassische Zählschleife gibt es nicht in Python\\
+    $\hookrightarrow$ \texttt{for} durchläuft Listen
+    \begin{lstlisting}
+    a = [1,2,3]
+    for elem in a:
+        print (elem)
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Wie zählen?}
+    \begin{lstlisting}
+    for index in range(10):
+        print (index)
+    # prints numbers 0 to 9
+    \end{lstlisting}
+    \begin{lstlisting}
+    a = [1,2,3]
+    for index, elem in enumerate(a):
+        print (index, elem)
+    \end{lstlisting}
+\end{frame}
+
+% nothing to do from here on
+\end{document}
