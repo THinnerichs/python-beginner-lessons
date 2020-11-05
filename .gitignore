@@ -1,2 +1,11 @@
 __pycache__
 *.pyc
+
+# Latex:
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
