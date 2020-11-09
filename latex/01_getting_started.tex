@@ -18,6 +18,62 @@
     \tableofcontents
 \end{frame}
 
+\section{Wie man ein Python Programm schreibt}
+\begin{frame}{Die Python Shell}
+	Die Python shell
+	\begin{itemize}
+		\item erlaubt es schnell Code zu testen
+		\item hilft schnell Dinge auszurechnen
+		\item ist kein Python Programm
+	\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Erste Schritte}
+	\begin{lstlisting}
+		>>> print("Hello World!")
+		Hello World!
+		>>> 3+3
+		6
+		>>> print(3+3)
+		6
+		>>> 3 * 3
+		84
+		>>> 3 / 3 
+		1.0
+		>>> 3 ** 3
+		27
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Variablenzuweisungen}
+	\begin{lstlisting}
+		>>> a = 5
+		>>> a
+		5
+		>>> b = a+2
+		>>> b
+		7
+		>>> a*b
+		35	
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}{DIY: Python Programm schreiben}
+	\begin{enumerate}
+		\item Öffnet den Editor eurer Wahl
+		\item Schreibt euren Programmcode
+		\item Speichert die Datei als *.py ab
+		\item Führt die Datei mit dem Interpreter eurer Wahl aus
+	\end{enumerate}
+	Oder
+	\begin{enumerate}
+		\item Macht dies alles zusammen in der Entwicklungsumgebung eurer Wahl, z.B.: \url{https://repl.it/languages/Python3}
+	\end{enumerate}
+	\pause Demonstriere Shell vs. Script
+\end{frame}
+
 % ---- Einführung Kontrollstrukturen ----
 \section{Was sind Kontrollstrukturen?}
 \begin{frame}{Wozu?}
@@ -27,6 +83,8 @@
         \item z.B.: Verzweigung, Zählschleife
     \end{itemize}
 \end{frame}
+
+
 
 \begin{frame}{Kontrollstrukturen in Python}
     Python kennt:
