@@ -28,8 +28,6 @@
 	\end{itemize}
 \end{frame}
 
-
-
 \begin{frame}[fragile]{Erste Schritte}
 	\begin{lstlisting}
 		>>> print("Hello World!")
@@ -39,11 +37,13 @@
 		>>> print(3+3)
 		6
 		>>> 3 * 3
-		84
+		9
 		>>> 3 / 3 
 		1.0
 		>>> 3 ** 3
 		27
+		>>> 4 % 3
+		1
 	\end{lstlisting}
 \end{frame}
 
@@ -74,9 +74,21 @@
 	\pause Demonstriere Shell vs. Script
 \end{frame}
 
+\begin{frame}
+	\huge Fragen?
+\end{frame}
+
+\begin{frame}{Einige Aufgaben}
+	Schreibe ein Python Programm, welches
+	\begin{enumerate}
+		\item die Fläche eines Kreises mit $r=4cm$ und $\pi = 3.14$ berechnet.
+		\item die Zahlen von 1 bis 20 addiert.
+	\end{enumerate}
+\end{frame}
+
 % ---- Einführung Kontrollstrukturen ----
 \section{Was sind Kontrollstrukturen?}
-\begin{frame}{Wozu?}
+\begin{frame}{Kontrollstrukturen: Wozu?}
     \begin{itemize}
         \item Strukturieren Programmverhalten
         \item für alle imperativen Sprachen ähnlich
@@ -93,6 +105,13 @@
         \item Zählschleife: \texttt{for .. in .. :}
         \item Kopfgesteuerte Schleife: \texttt{while .. :}
     \end{itemize}
+	\pause
+	Darüber hinaus 
+	\begin{itemize}
+		\item Kommentare
+		\item Komparatoren ($<,>,==, <=, >=$)
+		\item 
+	\end{itemize}
 \end{frame}
 % ----------------------- Der Python Interpreter ------------------------------
 \section{Verzweigungen ("{}If-Statements"{})}
@@ -102,6 +121,13 @@
         print ("a is equal to b!")
     print ("this is printed every time. bye.")
     \end{lstlisting}
+	\pause
+	\textbf{Beachte Indentation/Einrückung}
+	\begin{lstlisting}
+		if a == b:
+			print ("a is equal to b!")
+			print ("this is not printed every time. bye.")
+	\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]{Zweiseitige Verzweigungen}
@@ -110,6 +136,7 @@
         print ("a is equal to b!")
     else:
         print ("a is not equal to b!")
+        # this is a comment
         # be careful: 1 == 1, but 1 != "1" !
     
     print ("this is printed every time. bye.")
@@ -147,7 +174,7 @@
     $\rightarrow$ Wiederholt, solange Bedingung erfüllt ist:
     \begin{lstlisting}
     a = 10
-    while a > -1:
+    while a >= 0:
         a -= 1
     \end{lstlisting}
 \end{frame}
@@ -163,6 +190,17 @@
         if a == 1:
             break # break out of loop immediately
     \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben 2}
+	Schreibe ein Python Programm, welches
+	\begin{enumerate}
+		\item für eine Variable $a$ testet, ob diese zwischen 100 und 2000 liegt.
+		\item für eine Variable $a$ testet, ob diese gerade ist.
+		\item alle gerade Zahlen zwischen 1 und 10 ausgibt.
+		\item zwei Variablen addiert. Wenn die Summe zwischen 15 und 20 liegt, gebe 20 zurück.
+	\end{enumerate}
+	und printe eine passende Nachricht an den User.
 \end{frame}
 
 \section{Intermezzo: Listen}
