@@ -1,55 +1,13 @@
+%document
 \documentclass[10pt]{beamer}
-
-%packages
+%theme
+\usetheme{metropolis}
+% packages
+\usepackage{color}
+\usepackage{listings}
 \usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath,tabu}
-\usepackage{color}
-\usepackage{tikz}
-\usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows}
-
-\usetikzlibrary{fit,shapes}
-\usetikzlibrary{calc,shadings}
-\usepackage{pgfplots}
-\usepackage{color}
-\usepackage{colortbl}
-\usepackage{eurosym}
-\usepackage{mathtools}
-\usepackage{listings}
-\usepackage{tabularx}
-
-%definitions
-\usepackage{algorithm,algorithmic}
-
-%theme
-\usetheme{Dresden}
-\usecolortheme{rose}
-\useoutertheme{tree}
-
-%environments
-\newenvironment{ExampleGer}{\begin{exampleblock}{Example}}{\end{exampleblock}}
-
-\newenvironment{customlegend}[1][]{%
-	\begingroup
-	% inits/clears the lists (which might be populated from previous
-	% axes):
-	\csname pgfplots@init@cleared@structures\endcsname
-	\pgfplotsset{#1}%
-}{%
-	% draws the legend:
-	\csname pgfplots@createlegend\endcsname
-	\endgroup
-}%
-
-%definitions
-\def\addlegendimage{\csname pgfplots@addlegendimage\endcsname}
-% definition to insert numbers
-\pgfkeys{/pgfplots/number in legend/.style={%
-		/pgfplots/legend image code/.code={%
-			\node at (0.295,-0.0225){#1};
-		},%
-	},
-}
+\usepackage{multicol}
 
 
 % color definitions
