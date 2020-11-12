@@ -6,7 +6,7 @@
 
 % Presentation title
 \title{Kontrollstrukturen}
-\date{\today}
+\date{12.11.2020}
 
 
 \begin{document}
@@ -106,16 +106,22 @@
         \item Kopfgesteuerte Schleife: \texttt{while .. :}
     \end{itemize}
 	\pause
-	Darüber hinaus 
+	Darüber hinaus heute:
 	\begin{itemize}
 		\item Kommentare
 		\item Komparatoren ($<,>,==, <=, >=$)
-		\item 
 	\end{itemize}
 \end{frame}
 % ----------------------- Der Python Interpreter ------------------------------
 \section{Verzweigungen ("{}If-Statements"{})}
 \begin{frame}[fragile]{Einseitige Verzweigungen}
+	\begin{lstlisting}
+		>>> 5==5
+		True
+		>>> 5>6 and 5==5
+		False
+	\end{lstlisting}
+	\pause
     \begin{lstlisting}
     if a == b:
         print ("a is equal to b!")
@@ -192,6 +198,21 @@
     \end{lstlisting}
 \end{frame}
 
+\begin{frame}{Zusammenfassung}
+	\begin{itemize}
+		\item Indentation/Einrückung
+		\item Kommentare
+		\item Vergleichen von Werten
+		\item Boolesche Werte (True, False, and, or)
+		\item Kontrollstrukturen
+		\begin{itemize}
+			\item if, else, elif
+			\item while und continue
+		\end{itemize}
+		\item 
+	\end{itemize}
+\end{frame}
+
 \begin{frame}{Einige Aufgaben 2}
 	Schreibe ein Python Programm, welches
 	\begin{enumerate}
@@ -249,6 +270,15 @@
     for index, elem in enumerate(a):
         print (index, elem)
     \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben 3}
+	Schreibe ein Python Programm, welches
+	\begin{enumerate}
+		\item alle Zahlen von 1 bis 20 addiert
+		\item alle geraden Zahlen von 1 bis 20 ausgibt
+		\item eine gegebene Liste in ihrer Reihenfolge invertiert
+	\end{enumerate}
 \end{frame}
 
 % nothing to do from here on
