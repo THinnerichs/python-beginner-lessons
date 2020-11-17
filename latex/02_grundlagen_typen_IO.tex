@@ -1,41 +1,101 @@
 % The Slide Definitions
-\input{../course_definitions}
+\input{course_definitions}
 
 % Author and Course information
-\input{../course_information}
+\input{course_information}
 
 % Presentation title
-\title{Ein- und Ausgabe}
-\date{\today}
-
+\title{Listen, Ein- und Ausgaben}
+\date{18.11.2020}
 
 \begin{document}
-
+	
 \maketitle
+
+\begin{frame}{Letzte Woche: Zusammenfassung}
+	\begin{itemize}
+		\item rechnen in der Shell
+		\item Indentation/Einrückung
+		\item Kommentare
+		\item Vergleichen von Werten
+		\item Boolesche Werte (True, False, and, or)
+		\item Kontrollstrukturen
+		\begin{itemize}
+			\item if, else, elif
+			\item while und continue
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
 
 \begin{frame}{Gliederung}
     \setbeamertemplate{section in toc}[sections numbered]
     \tableofcontents
 \end{frame}
 
+\section{Intermezzo: Listen}
+
+\begin{frame}{Was sind Listen?}
+	Wie alltägliche Listen. In Python:
+	\begin{itemize}
+		\item \texttt{[]}, bzw. \texttt{[1,2,3]}
+		\item Methoden: \texttt{insert(), append(), pop(), remove(), index()}
+		\item siehe auch \texttt{help([])}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Wie verwende ich Listen}
+	\begin{lstlisting}
+	a = [1,5,3,2] # create new list
+	a.sort() # a is now sorted
+	print (a[3]) # 4th element of sorted list -> 5
+	a[3] = 7 # sets last/fourth(!) element to 7
+	highest = a.pop() # removes last element (7) and returns it
+	highest += 1
+	a.insert(0, highest) # add 8 at the start
+	print (a) # -> [8,1,2,3]
+	
+	\end{lstlisting}
+\end{frame}
+
+\section{For-Schleife}
+
+\begin{frame}[fragile]{For-Schleife}
+	Klassische Zählschleife gibt es nicht in Python\\
+	$\hookrightarrow$ \texttt{for} durchläuft Listen
+	\begin{lstlisting}
+	a = [1,2,3]
+	for elem in a:
+		print (elem)
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Wie zählen?}
+	\begin{lstlisting}
+	for index in range(10):
+		print (index)
+		# prints numbers 0 to 9
+	\end{lstlisting}
+	\begin{lstlisting}
+	a = [1,2,3]
+	for index, elem in enumerate(a):
+		print (index, elem)
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben 3}
+	Schreibe ein Python Programm, welches
+	\begin{enumerate}
+		\item alle Zahlen von 1 bis 20 addiert
+		\item alle Zahlen einer Liste aufsummiert
+		\item alle geraden Zahlen von 1 bis 20 ausgibt
+		\item eine gegebene Liste in ihrer Reihenfolge invertiert
+	\end{enumerate}
+\end{frame}
+
+
 % ---- Input von der Konsole
 \section{Input}
-\begin{frame}[fragile]{Einlesen von der Konsole}
-	\begin{itemize}
-		\item Motivation: Nutzerinteraktion
-		\item \texttt{input()} oder \texttt{input(<prompt>)}
-		\item liest Zeile von der Konsole
-		\item liefert einen String
-	\end{itemize}
-
-	\begin{lstlisting}
-	text = input() # wartet auf Nutzereingabe
-	print(text)
-
-	name = input('Wie heißt du?') # Nutzer erhält Eingabehinweis
-	print('Hallo ' + name '!')
-    	\end{lstlisting}
-\end{frame}
 
 \begin{frame}[fragile]{Problem}
 	\begin{lstlisting}
@@ -115,7 +175,7 @@
 	print('Noch', 'mehr', 'wundervoller', 'Text')
 
 	day = input('Welcher Tag ist heute?')
-	time = input('Wie spät ist es?')
+	time = input('Wie spaet ist es?')
 	print('Es ist ' + day + ', um ' + time + '.')
 	\end{lstlisting}
 \end{frame}
@@ -128,10 +188,10 @@
 	print('Noch', 'mehr', 'wundervoller', 'Text')
 
 	day = input('Welcher Tag ist heute?')
-	time = input('Wie spät ist es?')
+	time = input('Wie spaet ist es?')
 	print('Es ist ' + day + ', um ' + time + '.')
 
-	# oder schöner:
+	# oder schoener:
 	print('Es ist {}, um {}.'.format(day, time))
 	\end{lstlisting}
 \end{frame}
@@ -164,8 +224,7 @@
 	\item Lest zwei Zahlen ein und berechnet die Summe!
 	\item Lest eine (vom Nutzer vorher festzulegende) Anzahl an Zahlen ein. Berechnet die Summe (Maximum, Mittelwert, ...) und gebt sie zusammen mit der Liste der Zahlen aus!
 	\item Modifiziert euer Programm so, dass der Nutzer nach jeder Zahl gefragt wird, ob er weitere Zahlen eingeben möchte!
-	\item Wählt eine beliebige natürliche Zahl. Lasst den Nutzer eure Zahl raten. Wenn er falsch geraten hat, gebt einen Hinweis (>, <)!
-	\item Bearbeitet die Aufgaben auf der Kurswebsite!
+	\item Wählt eine beliebige natürliche Zahl. Lasst den Nutzer eure Zahl raten. Wenn er falsch geraten hat, gebt einen Hinweis $(>, <)$!
 	\end{enumerate}
 \end{frame}
 

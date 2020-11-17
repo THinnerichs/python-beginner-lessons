@@ -8,7 +8,6 @@
 \title{Kontrollstrukturen}
 \date{12.11.2020}
 
-
 \begin{document}
 
 \maketitle
@@ -221,63 +220,6 @@
 		\item zwei Variablen addiert. Wenn die Summe zwischen 15 und 20 liegt, gebe 20 zurück.
 	\end{enumerate}
 	und printe eine passende Nachricht an den User.
-\end{frame}
-
-\section{Intermezzo: Listen}
-
-\begin{frame}{Was sind Listen?}
-    Wie alltägliche Listen. In Python:
-    \begin{itemize}
-        \item \texttt{[]}, bzw. \texttt{[1,2,3]}
-        \item Methoden: \texttt{insert(), append(), pop(), remove(), index()}
-        \item siehe auch \texttt{help([])}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Wie verwende ich Listen}
-    \begin{lstlisting}
-    a = [1,5,3,2] # create new list
-    a.sort() # a is now sorted
-    print (a[3]) # 4th element of sorted list -> 5
-    highest = a.pop() # removes last element (5) and returns it
-    highest += 1
-    a.insert(0, highest) # add 6 at the start
-    print (a) # -> [6,1,2,3]
-    \end{lstlisting}
-\end{frame}
-
-\section{For-Schleife}
-
-\begin{frame}[fragile]{For-Schleife}
-    Klassische Zählschleife gibt es nicht in Python\\
-    $\hookrightarrow$ \texttt{for} durchläuft Listen
-    \begin{lstlisting}
-    a = [1,2,3]
-    for elem in a:
-        print (elem)
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]{Wie zählen?}
-    \begin{lstlisting}
-    for index in range(10):
-        print (index)
-    # prints numbers 0 to 9
-    \end{lstlisting}
-    \begin{lstlisting}
-    a = [1,2,3]
-    for index, elem in enumerate(a):
-        print (index, elem)
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}{Einige Aufgaben 3}
-	Schreibe ein Python Programm, welches
-	\begin{enumerate}
-		\item alle Zahlen von 1 bis 20 addiert
-		\item alle geraden Zahlen von 1 bis 20 ausgibt
-		\item eine gegebene Liste in ihrer Reihenfolge invertiert
-	\end{enumerate}
 \end{frame}
 
 % nothing to do from here on
