@@ -1,0 +1,172 @@
+% The Slide Definitions
+\input{course_definitions}
+
+% Author and Course information
+\input{course_information}
+
+% Presentation title
+\title{Collections und Funktionen}
+\date{26.11.2020}
+
+
+\begin{document}
+	
+\maketitle
+
+\begin{frame}{Was zuletzt geschah...}
+	\begin{itemize}
+		\item Listen und wo sie zu finden sind (\texttt{help(...), [], L.append(...)})
+		\item for-Schleifen (\texttt{for i in range(10):})
+		\item Standarddatentypen und Umwandlung dieser (\texttt{int("42")})
+		\item Eingabe und Ausgabe (\texttt{input("Zahlen, bitte:")})
+		\item Strings (\texttt{\"abc" + "def", 'abc'[:-1]},)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Gliederung}
+	\setbeamertemplate{section in toc}[sections numbered]
+	\tableofcontents
+\end{frame}
+
+% ---- Was ist Objektorientierung ----
+\section{Übung macht den Meister}
+
+\begin{frame}{Einige Aufgaben\texttrademark 4.0}
+	Schreibe ein Programm, welches
+	\begin{enumerate}
+		\item alle geraden Zahlen einer Zahlenliste in einer zweiten Liste speichert und stoppt, sobald eine $237$ vorkommt
+		\item alle Elemente einer Liste von Strings zusammenfügt und ausgibt
+		\item als Input den Namen und Heimatplaneten des Nutzers abfragt und diesen nett grüßt
+		\item die Seitenlänge $h$ und zugehörige Höhe $h_c$ eines Dreiecks einliest und den Flächeninhalt ausgibt
+		\item die Quersumme einer Zahl berechnet
+	\end{enumerate}
+\end{frame}
+
+\section{Dictionaries}
+\begin{frame}[fragile]{Nachtrag zu Listen: List comprehensions}
+\begin{lstlisting}
+    L = []
+    for num in list_of_numbers:
+        if num%2 == 0:
+            L.append(num+1)
+\end{lstlisting}
+\begin{lstlisting}
+    L = [num+1 for num in list_of_numbers if num%2==0]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Tupel und Mengen}
+	\begin{itemize}
+		\item[tuple] Listen mit festgesetzter Länge
+		\begin{itemize}
+			\item kein \texttt{append}, etc.
+			\item normaler Zugriff und Veränderung einzelner Elemente wie bei lists
+		\end{itemize}
+		\item[set] mathematische Menge
+		\begin{itemize}
+			\item keine Duplikate
+			\item ungeordnet
+		\end{itemize}
+	\end{itemize}
+\begin{lstlisting}
+>>> a=(1,2)
+>>> a[1]
+2
+>>> s = {1,2,3,1}
+>>> s
+{1,2,3}
+>>> s[0]
+Error
+>>> {1,2,3} & {2,3,4}
+{2,3}
+>>> {1,2,3} | {2,3,4}
+{1,2,3,4}
+>>> set(range(20))
+...
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Dictionaries}
+	Dictionaries sind Mengen von key-value-pairs mit folgenden Eigenschaften
+	\begin{itemize}
+		\item unordered
+		\item changeable
+		\item ohne Duplikate (bezogen auf keys)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Dictionaries}
+\begin{lstlisting}
+thisdict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+}
+print(thisdict)
+print(thisdict['brand'])
+
+thisdict['brand']='Trabant'
+thisdict['color] # ERROR
+thisdict.get('color')
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+Mengen erlauben keine Duplikate:
+\begin{lstlisting}
+thisdict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964,
+    "year": 2020
+}
+print(thisdict) 
+
+\end{lstlisting}	
+\end{frame}
+
+\begin{frame}[fragile]{Wie man über dicts iteriert}
+dicts haben Methoden wie
+\begin{itemize}
+	\item \texttt{d.items()}
+	\item \texttt{d.keys()}
+	\item \texttt{d.values()}
+\end{itemize}
+\begin{lstlisting}
+for key, value in d.items():
+	d[key] = value+1
+	
+# dict comprehensions
+d = {key: value+1 for (key,value) in d.items()}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Rückblick: Typübersicht}
+	\begin{tabular}{c|l}
+		Name & Funktion \\ \hline
+		\texttt{int} & Ganzzahl "beliebiger" Größe \\
+		\texttt{float} & Kommazahl "beliebiger" Größe \\
+		\texttt{str} & Zeichenkette \\
+		\texttt{bool} & Wahrheitswert (\texttt{True}, \texttt{False})\\ \hline
+		\texttt{list} & gewöhnliche Liste \\
+		\texttt{tuple} & unveränderbares n-Tupel \\
+		\texttt{set} & (mathematische) Menge von Objekten \\
+		\texttt{dict} & Hash-Map \\
+	\end{tabular}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben\texttrademark 5}
+Schreibe ein Python Programm, welches
+	\begin{enumerate}
+		\item zwei dicts zusammenfügt
+		\item ein dict nach den values sortiert
+		\item alle geraden Einträge eines dicts löscht
+		\item den größten und kleinsten value einer Liste ausgibt
+		\item den größten und kleinsten value eines dicts ausgibt
+		\item ein dict nach values größer 170 filtert
+		\item welches die Überschneidungen zweier dicts ausgibt
+	\end{enumerate}
+\end{frame}
+
+
+\end{document}
