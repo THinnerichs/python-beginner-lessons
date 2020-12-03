@@ -5,8 +5,8 @@
 \input{course_information}
 
 % Presentation title
-\title{Collections und Funktionen}
-\date{26.11.2020}
+\title{Collections}
+\date{26.11.2020 und 03.12.2020}
 
 
 \begin{document}
@@ -86,6 +86,15 @@ Error
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}{Einige Aufgaben\texttrademark 5.0}
+	Schreibe ein Programm, welches
+	\begin{enumerate}
+		\item die Liste der Quadrate der Zahlen von 1 bis 20 erzeugt, wenn diese Zahlen kleiner als 5 oder größer als 14 sind (mit List comprehensions)
+		\item eine gegebene, \textbf{geordnete} Liste von Zahlen von Duplikaten befreit
+		\item[\textbf{Bonus:}] eine gegebene, \textbf{ungeordnete} Liste von Zahlen von Duplikaten befreit
+	\end{enumerate}
+\end{frame}
+
 \begin{frame}[fragile]{Dictionaries}
 	Dictionaries sind Mengen von key-value-pairs mit folgenden Eigenschaften
 	\begin{itemize}
@@ -155,16 +164,16 @@ d = {key: value+1 for (key,value) in d.items()}
 	\end{tabular}
 \end{frame}
 
-\begin{frame}{Einige Aufgaben\texttrademark 5}
+\begin{frame}{Einige Aufgaben\texttrademark 6}
 Schreibe ein Python Programm, welches
 	\begin{enumerate}
-		\item zwei dicts zusammenfügt
-		\item ein dict nach den values sortiert
-		\item alle geraden Einträge eines dicts löscht
-		\item den größten und kleinsten value einer Liste ausgibt
-		\item den größten und kleinsten value eines dicts ausgibt
-		\item ein dict nach values größer 170 filtert
-		\item welches die Überschneidungen zweier dicts ausgibt
+		\item zwei gegebene dicts zusammenfügt
+		\item welches die Überschneidungen zweier gegebener dicts ausgibt
+		\item ein gegebenes dict nach den values sortiert
+		\item alle geraden Einträge eines gegebenen dicts löscht
+		\item den größten und kleinsten value einer gegebenen Liste ausgibt
+		\item den größten und kleinsten value eines gegebenen dicts ausgibt
+		\item ein gegebenes dict nach values größer 170 filtert (Nur Paare mit $value>170$ verbleiben)
 	\end{enumerate}
 \end{frame}
 
