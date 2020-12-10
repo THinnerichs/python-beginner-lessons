@@ -1,0 +1,155 @@
+% The Slide documentDefinitions
+\input{course_definitions}
+
+% Author and Course information
+\input{course_information}
+
+% Presentation title
+\title{Funktionen und Modularisierung}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Rückblick}
+    \begin{itemize}
+        \item Datentypen: \texttt{int, str, list, set, dict, ...}
+        \item Komperatoren: \texttt{==, !=, ...}
+        \item Schleifen: \texttt{while, for}
+        \item Ein-/Ausgabe: \texttt{input, print}
+    \end{itemize}
+\end{frame}
+
+\section{Heute: Funktionen}
+
+\begin{frame}{Funktionen}
+    \begin{itemize}
+        \item Eine \textbf{Funktion} ist ein in sich geschlossener Codeblock, der eine bestimmte Aktion ausführt.
+        \item \textbf{Funktionen} können mit \textbf{Parametern} aufgerufen werden und können \textbf{Rückgabewerte} liefern.
+        \item \textbf{Funktionen} erlauben es Code zu \alert{modularisieren}, zu \alert{organisieren} und \alert{wiederverwendbar} zu machen.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Built-In Funktionen}
+\begin{lstlisting}
+# Die Anzahl der Elemente eines Containers bestimmen
+numbers = [1, 2, 3, 4, 5]
+len(numbers)
+
+# Den Typ einer Variable herausfinden
+n_float = 42.8
+type(n_float)
+
+# Informationen über ein Objekt bekommen
+set_of_even_numbers = set(n for n in range(1, 10) if n % 2 == 0)
+help(set_of_even_numbers)
+
+# Weitere: sorted(), enumerate(), ...
+\end{lstlisting}
+\textbf{\href{https://docs.python.org/3/library/functions.html}{Hier findet ihr eine Liste der Python 3.9.1 Built-in Funktionen.}}
+\end{frame}
+
+\begin{frame}[fragile]{Eigene Funktionen I}
+\begin{lstlisting}
+# Funktionsdefiniton startet mit dem Keyword 'def'
+
+def simple_function():
+
+    # Hier beginnt der Körper (body) der Funktion
+
+    print("The mitochondria is the powerhouse of the cell.")
+
+    # Hier endet der Körper der Funktion
+\end{lstlisting}
+\begin{itemize}
+    \item Kein \textbf{Parameter}, kein \textbf{Rückgabewert}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Eigene Funktionen II}
+\begin{lstlisting}
+# Der Wert eines übergebenen Parameters wird an eine
+# Variable im Körper der aufgerufenen Funktion gebunden
+
+def format_greeting(name):
+    return f"Hello {name}. Nice to meet you again!"
+
+# Der Rückgabewert einer Funktion kann
+# in einer Variable gespeichert werden
+
+result = format_greeting("Sun")
+print(result)
+\end{lstlisting}
+\begin{itemize}
+    \item Ein \textbf{Parameter}, ein \textbf{Rückgabewert}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Eigene Funktionen III}
+\begin{lstlisting}
+def calculate_price(item, price, amount=5):
+    costs = amount * price
+    return f"{amount} {items}'s will cost you {costs} $."
+\end{lstlisting}
+\begin{itemize}
+    \item Funktionen lassen sich auf verschiedene Arten aufrufen.
+\end{itemize}
+\begin{lstlisting}
+>>> calculate_price("Apple", 0.3, 10)
+# 10 Apple's will cost you 3.0 $
+
+>>> calculate_price(price=0.3, amount=10, item="Apple")
+# 10 Apple's will cost you 3.0 $
+
+>>> calculate_price("Apple", 0.3)
+# 10 Apple's will cost you 1.5 $
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Parametrisieren will gekonnt sein!}
+Bei den Parametern einer Funktion unterscheidet man zwischen verschiedenen Typen.
+\begin{itemize}
+    \item \textbf{Positionelle} Parameter (Erforderliche Parameter)
+    \item \textbf{Keyword} Parameter
+    \item \textbf{Optionale} Parameter (Parameter mit Default Wert)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Mini-Exkurs: Documentation}
+    \begin{lstlisting}
+    def complicated_funktion(gamma, offset, inertia):
+        """This function computes the result
+        of calculation foobar for some given
+        parameters.
+
+        A function can get really complicated!
+        But we can describe what a function does in
+        plain text in the function docstring.
+        """
+        ...
+    \end{lstlisting}
+    \begin{itemize}
+        \item \textbf{\alert{Code wird häufiger gelesen als geschrieben.}}
+        \item \textbf{Dokumentiert euren Code} und ihr müssst weniger lesen!
+        \item Gebt euren Funktionen und ihren Parametern \textbf{deskriptive Namen}!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben\texttrademark 6}
+    \begin{enumerate}
+        \item Schreibe eine Funktion, welche die Anzahl der Vokale einer Zeichenkette berechnet.
+        \item Schreibe eine Funktion, welche die Länge eines Videos im Format \texttt{mm:ss} (bspw. \texttt{02:54}) entgegen nimmt und die Länge des Videos in Sekunden zurückgibt.
+        \item Schreibe eine Funktion, welche die \texttt{Fakultät} einer Ganzahl berechnet. Die Fakultät einer Ganzzahl ist das Produkt der Ganzzahl mit allen kleineren positiven Ganzzahlen.
+        \item Schreibe eine Funktion, welche die \texttt{n-te} Zahl der \href{https://de.wikipedia.org/wiki/Fibonacci-Folge}{\texttt{Fibonacci-Folge}} berechnet.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Ressourcen zum Üben/Informieren}
+    \begin{itemize}
+        \item \textbf{\href{https://realpython.com/defining-your-own-python-function/}{Real Python Artikel: Defining your own python function}}
+        \item \textbf{\href{https://adventofcode.com/}{Advent of Code}}
+    \end{itemize}
+\end{frame}
+
+\end{document}
