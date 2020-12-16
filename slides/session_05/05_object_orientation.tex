@@ -1,0 +1,150 @@
+% The Slide Definitions
+\input{../theme/course_definitions}
+
+% Author and Course information
+\input{../theme/course_information}
+
+% Presentation title
+\title{Objektorientierung}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Rückblick}
+    \begin{itemize}
+        \item Datentypen: \texttt{int, str, list, dict, \ldots}
+        \item Komperatoren: \texttt{==, !=, \ldots}
+        \item Kontrollstrukturen: \texttt{if, elif, else}
+        \item Schleifen: \texttt{while, for}
+        \item \textbf{\alert{Funktionen: \texttt{return, def f(x): \ldots}}}
+    \end{itemize}
+\end{frame}
+
+% ---- Was ist Objektorientierung ----
+\section{Heute: Objektorientierung}
+
+\begin{frame}{Objektorientierung}
+    \begin{itemize}
+        \item \textbf{Konzept:} Software als interagierende \glqq Objekte\grqq
+        \item Objekte haben \ldots
+        \begin{itemize}
+            \item Eigenschaften (\textbf{Attribute})
+            \item Verhalten (\textbf{Methoden})
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Wozu?}
+    \begin{itemize}
+        \item \glqq intuitiver\grqq~Entwurf
+        \item Gruppierung von Daten und Verhalten $\rightarrow$ Klasse 
+        \item Organisation großer Softwaresysteme
+        \item $\rightarrow$ In Python grundlegend verankert
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Beispiel}
+    \texttt{random.randInt(min, max)} + Variablen $\rightarrow$ Objekt \glqq Würfel\grqq \begin{itemize}
+        \item Attribute: \texttt{seiten}
+        \item Methoden: \texttt{wuerfeln() -> int}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../images/d6.jpg}
+    \end{center}
+\end{frame}
+\begin{frame}{Klassen}
+    \begin{itemize}
+        \item Oft gleichen sich Objekte in Eigenschaften, Verhalten $\rightarrow$ \textbf{Klasse}
+        \item Attribute, Methoden bei allen Objekten einer Klasse gleich
+        \item Objekt ist \textbf{Instanz} einer Klasse
+    \end{itemize}
+    \includegraphics[width=\textwidth]{../images/dice.jpg}
+\end{frame}
+
+% ----------------------- Objektorientierung in Python -----------------------
+
+\section{Objektorientierung in Python}
+\begin{frame}{Nutzen von Objekten}
+    \begin{itemize}
+        \item Wir kennen bereits Klassen und Objekte:
+        \begin{itemize}
+            \item \texttt{"Hello World"} ist \textbf{Instanz} von \texttt{str}
+            \item \texttt{[1,2]} ist \textbf{Instanz} von \texttt{list}
+        \end{itemize}
+        \item Funktionen \texttt{sum([1,2,3])} $\leftrightarrow$ Methoden \texttt{[1,2,3].append(4)}!
+    \end{itemize} 
+\end{frame}
+
+\begin{frame}[fragile]{Nutzen von Objekten}
+\begin{lstlisting}
+# Erstellen eines neuen Objekts der Klasse list
+numbers = [1,2,3]
+# numbers ist tatsächlich Instanz von list
+print(isinstance(numbers, list))
+
+# Aufrufen der Methode append
+numbers.append(4)
+print(numbers) # Daten in der Liste wurden geaendert
+
+# len ist (eingebaute) Funktion, nicht Methode
+# -> NICHT numbers.len!
+print(len(numbers))
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Eigene Klassen}
+\begin{lstlisting}
+import random # für heute bleibt 'import' Magie
+
+class Wuerfel:
+    # VORSICHT: keine (Instanz-)Attribute hier!
+
+    # spezielle Methode: Konstruktor. 
+    # wird beim Erstellen einer Instanz aufgerufen
+    def __init__(self, seiten):
+
+        # neues Attribut "seiten" wird erzeugt.
+        self.seiten = seiten
+
+    # Methoden haben stehts "self" als ersten Parameter
+    # -> können so auf eigene Attribute zugreifen
+    def wuerfeln(self):
+        return random.randInt(1, self.seiten)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Eigene Klassen}
+\begin{lstlisting}
+# Erzeugen von Objekt Instanzen (vgl. list())
+d6 = Wuerfel(6)
+d20 = Wuerfel(20)
+
+# Aufruf der Methode Wuerfel.wuerfeln (vgl. list.append)
+wert = d20.wuerfeln()
+print(f"Ich habe eine {wert} gewürfelt!")
+\end{lstlisting}
+\end{frame}
+
+% --------------------- Aufgaben -------------------------
+
+\section{Aufgaben}
+\begin{frame}{Aufgaben}
+    \begin{enumerate}
+        \item Implementiere die Würfelklasse, erzeuge einen 20-seitigen Würfel und würfle. Falls du eine 20 würfelst, rufe laut "20"!
+        \item Implementiere ein Würfelspiel, bei dem du und der Computer einmal würfeln. Wer die höhere Zahl würfelt, gewinnt!
+        \item Schreibe eine Klasse \glqq Spieler\grqq, die einen Spieler bei diesem Würfelspiel darstellt. Welche Attribute und Methoden hat ein Spieler?
+        \item Erweitere dein Würfelspiel, sodass zwei Spielerobjekte gegeneinander spielen.
+        \item Zwei Spieler sind zu langweilig? Mit der Spielerklasse kannst du einfach mehr Spielerobjekte erzeugen. Erweitere dein Spiel, so dass beliebig viele Spieler spielen können (Hint: Listen)
+        \item Auch abstrakte Konzepte können als Klasse modelliert werden. Wie könnte man ein Würfelspiel mit mehreren Runden als Klasse darstellen?
+    \end{enumerate}
+\end{frame}
+
+% --------------------- Seasonal Greetings -------------------------
+
+\begin{frame}[standout]
+Schöne Festtage und einen guten Rutsch ins neue Jahr!
+\end{frame}
+\end{document}

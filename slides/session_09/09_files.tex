@@ -1,0 +1,133 @@
+% The Slide Definitions
+\input{../theme/course_definitions}
+
+% Author and Course information
+\input{../theme/course_information}
+
+% Presentation title
+\title{Arbeiten mit Dateien}
+\date{\today}
+
+\usepackage{tikz} \usetikzlibrary{arrows, positioning}
+
+\tikzset{
+  auto,
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Gliederung}
+    \setbeamertemplate{section in toc}[sections numbered]
+    \tableofcontents
+\end{frame}
+
+% ---- Rückblick ----
+\section{Motivation}
+
+\begin{frame}{Wofür Dateien?}
+	Python oft in Scripten für Datenverarbeitung:
+    \begin{itemize}
+        \item Messwerte
+        \item Logs
+        \item Konfigurationen
+        \item ...
+    \end{itemize}
+    $\hookrightarrow$ liegen in Dateien, sollen in weitere Dateien
+\end{frame}
+
+\begin{frame}{Warum Python?}
+	\begin{itemize}
+        \item Einfache Dateiformate (z.B. csv) in Python sehr einfach nutzbar
+        \item Betriebssystemunabhängig (keine Shell-Magie auf Windows)
+        \item Mit Python3: Keine Unicodeprobleme...
+	\end{itemize}
+\end{frame}
+
+\section{Lesen und Schreiben von Dateien}
+
+\begin{frame}{Konzept}
+	Grundlegender Ablauf:
+    \begin{itemize}
+        \item Öffnen $\rightarrow$ Datei-Objekt
+        \item Lesen / Schreiben $\rightarrow$ Methoden auf Datei-Objekt
+        \item Schließen $\rightarrow$ Ressourcen freigeben
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Dateien lesen}
+    \begin{lstlisting}
+# Datei öffnen
+f = open("test.txt", "r")
+# Sämtlichen Inhalt lesen
+print (f.read())
+# Datei schließen
+f.close()\end{lstlisting}
+    Auch nützlich zum Lesen\footnote{\url{https://www.tutorialspoint.com/python3/python_files_io.htm}}:
+    \begin{lstlisting}
+f = open("test.txt", "r")
+# Liest bis zu 100 Zeichen (auch Zeilenumbrüche)
+preview = f.read(100)
+# Liest alle nachfolgenden! Zeilen in Liste
+rest = f.readlines()
+# z.B. ["Zeile 1", "Zeile 2", "Zeile 3"]
+f.close()\end{lstlisting}
+    $\hookrightarrow$ jedes lesen schiebt Cursor weiter!
+\end{frame}
+
+\begin{frame}[fragile]{Dateien schreiben}
+    \begin{lstlisting}
+# Datei öffnen
+f = open("test.txt", "w")
+f.write("Hello World")
+f.close()
+    \end{lstlisting}
+    \begin{lstlisting}
+f = open("test.txt", "w")
+# Eine Zeile mit "Hello World" und Zeilenumbruch schreiben
+f.write("Hello World\n")
+# Danach weitere Zeilen anfügen
+zeilen = "\n".join(["Zeile 1", "Zeile 2", "Zeile 3"])
+f.write(zeilen)
+f.close()
+    \end{lstlisting}
+\end{frame}
+
+% --------------------- Aufgaben -------------------------
+
+\section{Aufgaben}
+
+\begin{frame}[fragile]{Aufgaben}
+    \begin{enumerate}
+        \item Schreibe die Quadratzahlen bis 1000 Zeilenweise in eine Datei!
+        \item Erweitere das Würfelspiel so, dass der Endstand in einer Datei festgehalten wird!
+        \item Lese folgenden Inhalt aus einer Datei:
+            \begin{verbatim}
+Year,Make,Model,Length
+1997,Ford,E350,2.34
+2000,Mercury,Cougar,2.38\end{verbatim}
+            Und überführe die Inhalte in eine Liste von Dictionaries:
+            \begin{lstlisting}
+[
+    {
+        "Year": 1997, "Make": "Ford",
+        "Model": "E350", "Length": 2.34,
+    },
+    {
+        "Year": 2000,
+         ...
+    }
+]\end{lstlisting}
+    \end{enumerate}
+\end{frame}
+
+\end{document}

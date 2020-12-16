@@ -1,0 +1,232 @@
+% The Slide Definitions
+\input{../theme/course_definitions}
+
+% Author and Course information
+\input{../theme/course_information}
+
+% Presentation title
+\title{Listen, Ein- und Ausgaben}
+\date{18.11.2020}
+
+\begin{document}
+	
+\maketitle
+
+\begin{frame}{Letzte Woche: Zusammenfassung}
+	\begin{itemize}
+		\item rechnen in der Shell
+		\item Indentation/Einrückung
+		\item Kommentare
+		\item Vergleichen von Werten
+		\item Boolesche Werte (True, False, and, or)
+		\item Kontrollstrukturen
+		\begin{itemize}
+			\item if, else, elif
+			\item while und continue
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Gliederung}
+    \setbeamertemplate{section in toc}[sections numbered]
+    \tableofcontents
+\end{frame}
+
+\section{Intermezzo: Listen}
+
+\begin{frame}{Was sind Listen?}
+	Wie alltägliche Listen. In Python:
+	\begin{itemize}
+		\item \texttt{[]}, bzw. \texttt{[1,2,3]}
+		\item Methoden: \texttt{insert(), append(), pop(), remove(), index()}
+		\item siehe auch \texttt{help([])}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Wie verwende ich Listen}
+	\begin{lstlisting}
+	a = [1,5,3,2] # create new list
+	a.sort() # a is now sorted
+	print (a[3]) # 4th element of sorted list -> 5
+	a[3] = 7 # sets last/fourth(!) element to 7
+	highest = a.pop() # removes last element (7) and returns it
+	highest += 1
+	a.insert(0, highest) # add 8 at the start
+	print (a) # -> [8,1,2,3]
+	
+	\end{lstlisting}
+\end{frame}
+
+\section{For-Schleife}
+
+\begin{frame}[fragile]{For-Schleife}
+	Klassische Zählschleife gibt es nicht in Python\\
+	$\hookrightarrow$ \texttt{for} durchläuft Listen
+	\begin{lstlisting}
+	a = [1,2,3]
+	for elem in a:
+		print (elem)
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Wie zählen?}
+	\begin{lstlisting}
+	for index in range(10):
+		print (index)
+		# prints numbers 0 to 9
+	\end{lstlisting}
+	\begin{lstlisting}
+	a = [1,2,3]
+	for index, elem in enumerate(a):
+		print (index, elem)
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben 3}
+	Schreibe ein Python Programm, welches
+	\begin{enumerate}
+		\item alle Zahlen von 1 bis 20 addiert
+		\item alle Zahlen einer Liste aufsummiert
+		\item alle geraden Zahlen von 1 bis 20 ausgibt
+		\item eine gegebene Liste in ihrer Reihenfolge invertiert
+	\end{enumerate}
+\end{frame}
+
+
+% ---- Input von der Konsole
+\section{Input}
+
+\begin{frame}[fragile]{Problem}
+	\begin{lstlisting}
+	number = input('Gib eine Zahl ein: ')
+	result = 5 + number
+	print('Deine Zahl plus 5 ergibt: ' + result)
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Problem: Fehlerhafte Typen}
+	\begin{lstlisting}
+	number = input('Gib eine Zahl ein: ')
+	result = 5 + number # Fehler: number ist ein String!
+	print('Deine Zahl plus 5 ergibt: ' + result)
+	\end{lstlisting}
+\end{frame}
+
+
+
+% ---- Typen und Typumwandlungen
+\section{Typen}
+\begin{frame}{Arbeiten mit Typen}
+	\begin{itemize}
+		\item dynamische Typisierung
+		\item erlaubte Operationen
+		\item Typumwandlung (Casting)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Rückblick: Typübersicht}
+    \begin{tabular}{c|l}
+		Name & Funktion \\ \hline
+		\texttt{int} & Ganzzahl "beliebiger" Größe \\
+		\texttt{float} & Kommazahl "beliebiger" Größe \\
+		\texttt{str} & Zeichenkette \\
+		\texttt{bool} & Wahrheitswert (\texttt{True}, \texttt{False})\\ \hline
+		\texttt{list} & gewöhnliche Liste \\
+		\texttt{tuple} & unveränderbares n-Tupel \\
+		\texttt{set} & (mathematische) Menge von Objekten \\
+		\texttt{dict} & Hash-Map \\
+	\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{Grundlagen: Typen}
+	\begin{itemize}
+		\item Typbestimmung: \texttt{type(...)}
+		\item Casting: \texttt{int('42')}, \texttt{float('10.3')}, etc.
+		\item potentielle Fehlerquelle
+	\end{itemize}
+
+	\begin{lstlisting}
+	a = int('42')
+	text = input('Deine Eingabe: ')
+
+	b = int(text) # kann einen Fehler werfen
+
+	3 + 6.3 # => 9.3
+	int(3 + 6.3) # => 9
+
+	def harm_folge(n):
+		if type(n) == int:
+			return 1/n
+	\end{lstlisting}
+
+
+
+\end{frame}
+
+% ---- Konsolenausgabe & Stringformatierung
+\section{Ausgabe}
+
+\begin{frame}[fragile]{Konsolenausgabe}
+	Ausgabe über \texttt{print(...)}
+
+	\begin{lstlisting}
+	print('Wundervoller Text')
+	print('Noch', 'mehr', 'wundervoller', 'Text')
+
+	day = input('Welcher Tag ist heute?')
+	time = input('Wie spaet ist es?')
+	print('Es ist ' + day + ', um ' + time + '.')
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Konsolenausgabe}
+	Ausgabe über \texttt{print(...)}
+
+	\begin{lstlisting}
+	print('Wundervoller Text')
+	print('Noch', 'mehr', 'wundervoller', 'Text')
+
+	day = input('Welcher Tag ist heute?')
+	time = input('Wie spaet ist es?')
+	print('Es ist ' + day + ', um ' + time + '.')
+
+	# oder schoener:
+	print('Es ist {}, um {}.'.format(day, time))
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Stringformatierung}
+	String können mit \texttt{'...'.format(...)} formatiert werden:
+
+	\begin{lstlisting}
+	number = 3
+	item = 'Katzen'
+	place = 'APB'
+
+	# per Reihenfolge
+	'Es gibt {} {} im {}!'.format(number, item, place)
+
+	# per Name
+	'Es gibt {amount} {things} im {where}!'.format(where=place, amount=10, things=item)
+
+	# per Reihenfolge und Name
+	'Es gibt {} {things} im {}!'.format(number, place, things='Koalas')
+	\end{lstlisting}
+\end{frame}
+
+
+% ---- Aufgaben
+\section{Aufgaben}
+\begin{frame}{Aufgaben}
+	\begin{enumerate}
+	\item Fragt den Nutzer nach Vor- und Nachnamen und grüßt ihn!
+	\item Lest zwei Zahlen ein und berechnet die Summe!
+	\item Lest eine (vom Nutzer vorher festzulegende) Anzahl an Zahlen ein. Berechnet die Summe (Maximum, Mittelwert, ...) und gebt sie zusammen mit der Liste der Zahlen aus!
+	\item Modifiziert euer Programm so, dass der Nutzer nach jeder Zahl gefragt wird, ob er weitere Zahlen eingeben möchte!
+	\item Wählt eine beliebige natürliche Zahl. Lasst den Nutzer eure Zahl raten. Wenn er falsch geraten hat, gebt einen Hinweis $(>, <)$!
+	\end{enumerate}
+\end{frame}
+
+% nothing to do from here on
+\end{document}

@@ -1,0 +1,226 @@
+% The Slide Definitions
+\input{../theme/course_definitions}
+
+% Author and Course information
+\input{../theme/course_information}
+
+% Presentation title
+\title{Kontrollstrukturen}
+\date{12.11.2020}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Gliederung}
+    \setbeamertemplate{section in toc}[sections numbered]
+    \tableofcontents
+\end{frame}
+
+\section{Wie man ein Python Programm schreibt}
+\begin{frame}{Die Python Shell}
+	Die Python shell
+	\begin{itemize}
+		\item erlaubt es schnell Code zu testen
+		\item hilft schnell Dinge auszurechnen
+		\item ist kein Python Programm
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Erste Schritte}
+	\begin{lstlisting}
+		>>> print("Hello World!")
+		Hello World!
+		>>> 3+3
+		6
+		>>> print(3+3)
+		6
+		>>> 3 * 3
+		9
+		>>> 3 / 3 
+		1.0
+		>>> 3 ** 3
+		27
+		>>> 4 % 3
+		1
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Variablenzuweisungen}
+	\begin{lstlisting}
+		>>> a = 5
+		>>> a
+		5
+		>>> b = a+2
+		>>> b
+		7
+		>>> a*b
+		35	
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}{DIY: Python Programm schreiben}
+	\begin{enumerate}
+		\item Öffnet den Editor eurer Wahl
+		\item Schreibt euren Programmcode
+		\item Speichert die Datei als *.py ab
+		\item Führt die Datei mit dem Interpreter eurer Wahl aus
+	\end{enumerate}
+	Oder
+	\begin{enumerate}
+		\item Macht dies alles zusammen in der Entwicklungsumgebung eurer Wahl, z.B.: \url{https://repl.it/languages/Python3}
+	\end{enumerate}
+	\pause Demonstriere Shell vs. Script
+\end{frame}
+
+\begin{frame}
+	\huge Fragen?
+\end{frame}
+
+\begin{frame}{Einige Aufgaben}
+	Schreibe ein Python Programm, welches
+	\begin{enumerate}
+		\item die Fläche eines Kreises mit $r=4cm$ und $\pi = 3.14$ berechnet.
+		\item die Zahlen von 1 bis 20 addiert.
+	\end{enumerate}
+\end{frame}
+
+% ---- Einführung Kontrollstrukturen ----
+\section{Was sind Kontrollstrukturen?}
+\begin{frame}{Kontrollstrukturen: Wozu?}
+    \begin{itemize}
+        \item Strukturieren Programmverhalten
+        \item für alle imperativen Sprachen ähnlich
+        \item z.B.: Verzweigung, Zählschleife
+    \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Kontrollstrukturen in Python}
+    Python kennt:
+    \begin{itemize}
+        \item Ein- / Zweiseitige Verzweigung: \texttt{if .. : / if .. : .. else: ..}
+        \item Zählschleife: \texttt{for .. in .. :}
+        \item Kopfgesteuerte Schleife: \texttt{while .. :}
+    \end{itemize}
+	\pause
+	Darüber hinaus heute:
+	\begin{itemize}
+		\item Kommentare
+		\item Komparatoren ($<,>,==, <=, >=$)
+	\end{itemize}
+\end{frame}
+% ----------------------- Der Python Interpreter ------------------------------
+\section{Verzweigungen ("{}If-Statements"{})}
+\begin{frame}[fragile]{Einseitige Verzweigungen}
+	\begin{lstlisting}
+		>>> 5==5
+		True
+		>>> 5>6 and 5==5
+		False
+	\end{lstlisting}
+	\pause
+    \begin{lstlisting}
+    if a == b:
+        print ("a is equal to b!")
+    print ("this is printed every time. bye.")
+    \end{lstlisting}
+	\pause
+	\textbf{Beachte Indentation/Einrückung}
+	\begin{lstlisting}
+		if a == b:
+			print ("a is equal to b!")
+			print ("this is not printed every time. bye.")
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Zweiseitige Verzweigungen}
+    \begin{lstlisting}
+    if a == b:
+        print ("a is equal to b!")
+    else:
+        print ("a is not equal to b!")
+        # this is a comment
+        # be careful: 1 == 1, but 1 != "1" !
+    
+    print ("this is printed every time. bye.")
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Verschachtelte Verzweigungen}
+    \begin{lstlisting}
+    if a < b:
+        print ("a is less than b!")
+    else:
+        if a == b:
+            print ("a == b!")
+        print ("a >= b!")
+        # is also executed when a == b! 
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Kurzform elif Verzweigungen}
+    Oder mit \texttt{elif}:
+    \begin{lstlisting}
+    if a < b:
+        print ("a is less than b!")
+    elif a == b:
+        print ("a == b!")
+    else:
+        print ("a > b!")
+        # is not if when a == b! 
+    \end{lstlisting}
+\end{frame}
+
+\section{While-Schleife}
+
+\begin{frame}[fragile]{While-Schleife}
+    $\rightarrow$ Wiederholt, solange Bedingung erfüllt ist:
+    \begin{lstlisting}
+    a = 10
+    while a >= 0:
+        a -= 1
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Vorzeitiges Abbrechen} 
+    \begin{lstlisting}
+    a = 10
+    while a > -1:
+        a -= 1
+        if a > 3:
+            continue # jump to next interation
+        print ("countdown:", a) # only printed for 3,2,1
+        if a == 1:
+            break # break out of loop immediately
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Zusammenfassung}
+	\begin{itemize}
+		\item Indentation/Einrückung
+		\item Kommentare
+		\item Vergleichen von Werten
+		\item Boolesche Werte (True, False, and, or)
+		\item Kontrollstrukturen
+		\begin{itemize}
+			\item if, else, elif
+			\item while und continue
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben 2}
+	Schreibe ein Python Programm, welches
+	\begin{enumerate}
+		\item für eine Variable $a$ testet, ob diese zwischen 100 und 2000 liegt.
+		\item für eine Variable $a$ testet, ob diese gerade ist.
+		\item alle gerade Zahlen zwischen 1 und 10 ausgibt.
+		\item zwei Variablen addiert. Wenn die Summe zwischen 15 und 20 liegt, gebe 20 zurück.
+	\end{enumerate}
+	und printe eine passende Nachricht an den User.
+\end{frame}
+
+% nothing to do from here on
+\end{document}
