@@ -12,3 +12,5 @@ __pycache__
 *.vrb
 *.bbl
 *.blg
+
+*.txt
