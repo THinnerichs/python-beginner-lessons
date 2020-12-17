@@ -47,7 +47,7 @@
 \end{frame}
 
 \begin{frame}{Beispiel}
-    \texttt{random.randInt(min, max)} + Variablen $\rightarrow$ Objekt \glqq Würfel\grqq \begin{itemize}
+    \texttt{random.randint(min, max)} + Variablen $\rightarrow$ Objekt \glqq Würfel\grqq \begin{itemize}
         \item Attribute: \texttt{seiten}
         \item Methoden: \texttt{wuerfeln() -> int}
     \end{itemize}
@@ -112,7 +112,7 @@ class Wuerfel:
     # Methoden haben stehts "self" als ersten Parameter
     # -> können so auf eigene Attribute zugreifen
     def wuerfeln(self):
-        return random.randInt(1, self.seiten)
+        return random.randint(1, self.seiten)
 \end{lstlisting}
 \end{frame}
 
