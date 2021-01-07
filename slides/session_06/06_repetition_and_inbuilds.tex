@@ -1,0 +1,185 @@
+% The Slide Definitions
+\input{../theme/course_definitions}
+
+% Author and Course information
+\input{../theme/course_information}
+
+% Presentation title
+\title{Collections}
+\date{26.11.2020 und 03.12.2020}
+
+
+\begin{document}
+	
+\maketitle
+
+\begin{frame}{Was zuletzt geschah...}
+	\begin{itemize}
+		\item Datentypen: \texttt{int, str, list, dict, \ldots}
+		\item Komperatoren: \texttt{==, !=, \ldots}
+		\item Kontrollstrukturen: \texttt{if, elif, else}
+		\item Schleifen: \texttt{while, for}
+		\item \textbf{\alert{Funktionen: \texttt{return, def f(x): \ldots}}}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Was zuletzt geschah... 2}
+	\begin{itemize}
+		\item Objektorientiertes programmieren: \texttt{class, \_\_init\_\_, get}
+		\item modellieren mit python (Wie man richtig würfelt)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Gliederung}
+	\setbeamertemplate{section in toc}[sections numbered]
+	\tableofcontents
+\end{frame}
+
+\begin{frame}{Quiz zu Typen}
+	\footnotesize
+	\begin{tabular}{c|l|l|l|l}
+		Name & Funktion &iterierbar &anwendbare Funktionen &  Methoden\\ 
+		\hline
+		\texttt{int} & &&& \\
+		\texttt{float} &  &&& \\
+		\texttt{str} &  &&& \\
+		\texttt{bool} &  &&&\\ \hline
+		\texttt{list} &  &&& \\
+		\texttt{tuple} & &&& \\
+		\texttt{set} &  &&& \\
+		\texttt{dict} &  &&& \\
+	\end{tabular}
+\end{frame}
+
+\begin{frame}{Auflösung}
+	\footnotesize
+	\begin{tabular}{c|p{2cm}|l|l|l}
+		Name & Funktion &iterierbar &anwendbare Funktionen &  Methoden\\ 
+		\hline
+		\texttt{int} & Ganzzahl &no& +, float&\texttt{to\_bytes}\\
+		\texttt{float} & Kommazahl&no& +&\texttt{\_\_round\_\_}\\
+		\texttt{str} & Zeichenkette &no& +, \texttt{len}&\texttt{lower()}\\
+		\texttt{bool} & Wahrheitswert &no&\texttt{int}&$\dots$\\ 
+		\hline
+		\texttt{list} & gewöhnliche Liste &yes&\texttt{len}&\texttt{append}\\
+		\texttt{tuple} & unveränderbares n-Tupel&yes&\texttt{len}&\texttt{count} \\
+		\texttt{set} & (mathematische) Menge &yes&\texttt{len}&\texttt{pop, add, update}\\
+		\texttt{dict} & Hash-Map &yes&\texttt{len}&\texttt{update, pop}\\
+	\end{tabular}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben 7}
+	Schreibe eine Python Klasse/ein Python Programm, welche
+	\begin{enumerate}
+		\item ein Rechteck darstellt, dabei Höhe und Breite einliest, get und set, und eine Methode zur Berechnung der Fläche hat
+		\item eine/-n VolleyballspielerIn darstellt (name, Nummer)
+		\item welches eine Volleyballmannschaft darstellt (Mannschaft, Geld)
+		\item eine Funktion, welche Transfers zwischen zwei Mannschaften ausführt
+		\item zwei Mannschaften gegeneinander spielen lässt und ein zufälliges Ergebnis ausführt (Optional: Das Ergebnis nach Geld gewichten)
+		\item eine Saison von 6 Mannschaften mit Hin- und Rückrunde simuliert
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Built-In functions}
+	Bekannte Built-In Funktionen
+	\begin{itemize}
+		\item \texttt{int, float, str}
+		\item \texttt{len, range, $\dots$}
+	\end{itemize}
+	\pause
+	Neue und spannende Built-In Funktionen:
+	\begin{itemize}
+		\item \texttt{enumerate}
+		\item \texttt{map}
+		\item \texttt{lambda}
+		\item \texttt{zip}
+		\item \texttt{filter}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{enumerate}
+\texttt{enumerate} nimmt iterable und gibt tuple von Index und Element zurück
+\begin{lstlisting}
+for i in range(len(my_list)-1):
+	ele = my_list[i]
+	f(ele, i%dim1)
+
+for i, ele in enumerate(L):
+	next\_ele = my\_list[i+1]
+	f(ele, i%dim1)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{map und lambda}
+\begin{lstlisting}
+def f(a,b):
+	return a%b + 42
+	
+f = lambda a,b: a%b + 42
+\end{lstlisting}
+\pause 
+\begin{lstlisting}
+# map(func, iterable) -> Funktion auf alle Elemente
+
+#use the list() function to display a readable version of the result:
+list(map(lambda a: a+5, list_of_numbers))
+
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{filter und zip}
+\begin{lstlisting}
+ages = [5, 12, 17, 18, 24, 32]
+
+def myFunc(x):
+	if x < 18:
+		return False
+	else:
+		return True
+
+adults = filter(myFunc, ages)
+
+for x in adults:
+	print(x) 
+\end{lstlisting}
+\pause
+\begin{lstlisting}
+>>> a = ("John", "Charles", "Mike")
+>>> b = ("Jenny", "Christy", "Monica", "Vicky")
+
+>>> x = zip(a, b)
+
+#use the list() function to display a readable version of the result:
+
+>>> list(x)
+[('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica')]
+
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item \texttt{enumerate}: ele -> i, ele
+		\item \texttt{map}: map(func, iter) -> func(i for i in iter)
+		\item \texttt{zip}: zip(iter1, iter2) -> iter of tuples
+		\item \texttt{filter}: filter(func, iter) -> [iter for i in iter if func(i)]
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben 8}
+	Schreibe ein Python Programm, welches
+	\begin{enumerate}
+		\item eine jedes Element einer gegebenen Liste verdoppelt
+		\item alle geraden Elemente eine gegebenen Liste von Zahlen zurückgibt
+		\item 1-dimensionale Listen von Koordinaten nimmt und diese zu 3D-Koordinaten zusammenfügt
+		\item 3 gleichlange Listen von Zahlen Elementweise addiert
+		\item die Unterschiede zweier gegebener Listen ausgibt
+	\end{enumerate}
+\end{frame}
+
+
+
+
+
+
+\end{document}
