@@ -5,9 +5,8 @@
 \input{../theme/course_information}
 
 % Presentation title
-\title{Collections}
-\date{26.11.2020 und 03.12.2020}
-
+\title{Repetition and Built-Ins}
+\date{07.01.2021}
 
 \begin{document}
 	
@@ -127,7 +126,7 @@ list(map(lambda a: a+5, list_of_numbers))
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{filter und zip}
+\begin{frame}[fragile]{filter}
 \begin{lstlisting}
 ages = [5, 12, 17, 18, 24, 32]
 
@@ -142,7 +141,9 @@ adults = filter(myFunc, ages)
 for x in adults:
 	print(x) 
 \end{lstlisting}
-\pause
+\end{frame}
+
+\begin{frame}[fragile]{zip}
 \begin{lstlisting}
 >>> a = ("John", "Charles", "Mike")
 >>> b = ("Jenny", "Christy", "Monica", "Vicky")
