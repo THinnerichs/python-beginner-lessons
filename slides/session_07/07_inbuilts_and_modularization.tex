@@ -1,0 +1,223 @@
+% The Slide Definitions
+\input{../theme/course_definitions}
+
+% Author and Course information
+\input{../theme/course_information}
+
+% Presentation title
+\title{Repetition and Built-Ins}
+\date{07.01.2021}
+
+\begin{document}
+	
+\maketitle
+
+\begin{frame}{Was zuletzt geschah...}
+	\begin{itemize}
+		\item Wiederholung von Klassen. dicts, functionen, sets, listen
+		\item Begin inbuilts
+	\end{itemize}
+\end{frame}
+
+\section{Built-In Functions}
+\begin{frame}{Built-In Functions}
+	Bekannte Built-In Funktionen
+	\begin{itemize}
+		\item \texttt{int, float, str}
+		\item \texttt{len, range, $\dots$}
+	\end{itemize}
+	\pause
+	Neue und spannende Built-In Funktionen:
+	\begin{itemize}
+		\item \texttt{enumerate}
+		\item \texttt{map}
+		\item \texttt{lambda}
+		\item \texttt{zip}
+		\item \texttt{filter}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{enumerate}
+	\texttt{enumerate} nimmt iterable und gibt tuple von Index und Element zurück
+	\begin{lstlisting}
+		for i in range(len(my_list)-1):
+		ele = my_list[i]
+		f(ele, i%dim1)
+		
+		for i, ele in enumerate(L):
+		next\_ele = my\_list[i+1]
+		f(ele, i%dim1)
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{map und lambda}
+	\begin{lstlisting}
+		def f(a,b):
+		return a%b + 42
+		
+		f = lambda a,b: a%b + 42
+	\end{lstlisting}
+	\pause 
+	\begin{lstlisting}
+		# map(func, iterable) -> Funktion auf alle Elemente
+		
+		#use the list() function to display a readable version of the result:
+		list(map(lambda a: a+5, list_of_numbers))
+		
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{filter}
+	\begin{lstlisting}
+		ages = [5, 12, 17, 18, 24, 32]
+		
+		def myFunc(x):
+		if x < 18:
+		return False
+		else:
+		return True
+		
+		adults = filter(myFunc, ages)
+		
+		for x in adults:
+		print(x) 
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{zip}
+	\begin{lstlisting}
+		>>> a = ("John", "Charles", "Mike")
+		>>> b = ("Jenny", "Christy", "Monica", "Vicky")
+		
+		>>> x = zip(a, b)
+		
+	
+		
+		#use the list() function to display a readable version of the result:
+		
+		>>> list(x)
+		[('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica')]
+		
+		>>> x = [(a_ele, b_ele) for a_ele in a for b_ele in b]
+		
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item \texttt{enumerate}: enumerate(iter) -> [(i, iter[i]) for i in range(len(iter))]
+		\item \texttt{map}: map(func, iter) -> [func(i for i in iter)]
+		\item \texttt{zip}: zip(iter1, iter2) -> [(ele1, ele2) for (ele1, ele2) in zip(iter1,iter2)]
+		\item \texttt{filter}: filter(func, iter) -> [i for i in iter if func(i)]
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben 8}
+	Schreibe ein Python Programm, welches
+	\begin{enumerate}
+		\item eine jedes Element einer gegebenen Liste verdoppelt
+		\item alle geraden Elemente eine gegebenen Liste von Zahlen zurückgibt
+		\item 1-dimensionale Listen von Koordinaten nimmt und diese zu 3D-Koordinaten zusammenfügt
+		\item 3 gleichlange Listen von Zahlen Elementweise addiert
+		\item die Unterschiede zweier gegebener, gleichlanger Listen ausgibt (elementweiser Vergleich)
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Aufgaben}
+	\begin{enumerate}
+		\item Erweitere die Spielerklasse, sodass ein Spieler mehrere Würfel besitzen kann. Wenn er würfelt, so soll er mit allen Würfeln nacheinander würfeln und eine Ergebnisliste zurückbekommen.
+		\item Modelliert das Würfelspiel als eigene Klasse.
+	\end{enumerate}
+	$\hookrightarrow$ Lösung in Snippets
+\end{frame}
+
+\begin{frame}[fragile]{Module einbinden}
+	\begin{lstlisting}
+		from random import randint
+		print(randint(1, 10))
+		
+		from wuerfel import *
+		d20 = Wuerfel(20)
+		print(d20.wuerfeln())
+		
+		import spieler
+		spieler = spieler.Spieler("Arndt", d20)
+		print(spieler.name)
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Nach Informationen zu einer Bibliothek suchen}
+	\begin{enumerate}
+		\item Öffnet die Suchmaschine eures Vertrauens
+		\item Sucht nach \texttt{python random}
+		\item Klickt auf den Link zur offiziellen Dokumentation unter \url{https://docs.python.org/3/library/random.html}
+		\item Scrollt zu \texttt{random.randint}
+		\item Scrollt zu \texttt{random.choice} und \texttt{random.choices}
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben 9.0}
+	Schreibe ein Python Programm, welches für eine Gruppe von Spielern, repräsentiert durch \texttt{[1,2,..,num\_spieler]}, das Spiel "Flaschendrehen\grqq{} simuliert, und dabei
+	\begin{enumerate}
+		\item einen zufälligen Spieler auswählt und damit eine Spielrunde simuliert.
+		\item 5 Runden simuliert.
+		\item 5 Runden simuliert, sodass keiner zwei mal ausgewählt werden kann.
+		\item die Reihenfolge der Spieler zufällig mischt
+		\item für einen Spieler den Anteil von Kirschsaft an seinem KiBa ausgibt. 
+	\end{enumerate}
+\end{frame}
+
+\section{matplotlib}
+
+\begin{frame}{Motivation}
+	\begin{itemize}
+		\item Mit Python berechnete Daten plotten:
+		\begin{figure}[h]
+			\includegraphics[width = .7\linewidth]{../images/spielplot}
+		\end{figure}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Einfaches Beispiel}
+	\begin{lstlisting}
+		from matplotlib import pyplot
+		pyplot.plot([1,2,3,4], [1,4,9,16], 'ro')
+		pyplot.axis([0, 6, 0, 20])
+		pyplot.show()
+	\end{lstlisting}
+	
+	\begin{figure}[h]
+		\includegraphics[width=.5\linewidth]{../images/matplotlib_example1}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Matplotlib instalieren}
+	Linux (Ubuntu):
+	\begin{lstlisting}
+		pip3 install --user matplotlib
+	\end{lstlisting}
+	
+	Windows:
+	\begin{lstlisting}
+		python.exe -m pip install matplotlib
+	\end{lstlisting}
+	Matplotlib Tutorial: \url{https://matplotlib.org/users/pyplot_tutorial.html}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben 10.0}
+	\begin{enumerate}
+		\item Erstelle ein Diagramm, in dem der Entstand eines Spiels nach der Simulation (\texttt{.simuliere()}) für jeden Spieler dargestellt ist.
+		\item Erstelle ein Diagramm, in dem der Punktestand aller Spieler im zeitlichen Verlauf dargestellt ist (s. Beispiel in dieser Präsentation)
+		\item Füge einen schummelnden Spieler zu deinem Spiel hinzu:
+		\begin{enumerate}
+			\item Mehr Würfel
+			\item Andere Seitenzahl
+			\item seid kreativ $\dots$
+		\end{enumerate}
+		Wie wirkt sich das Schummeln bei den verschiedenen Wertungsmodi aus? \\
+		(\texttt{"wuerfelsumme"}, \texttt{"wuerfelmaximum"}, \texttt{"paschzahl"})\\
+		Dies wird bei höherer Rundenzahl möglicherweise deutlicher.
+	\end{enumerate}
+\end{frame}
+
+\end{document}
