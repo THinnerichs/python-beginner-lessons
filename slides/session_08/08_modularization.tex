@@ -34,11 +34,11 @@ import random as rnd        # -> aufruf: rnd.randint()
 
 # Import des gesamten Inhalts eines Moduls/PKG
 # **in** den Namespace des importierenden Moduls
-import * from random        # -> aufruf: randint()
+from random import *        # -> aufruf: randint()
 
 # Import einer einzelnen Funktion
 # **in** den Namespace des importierenden Moduls
-import randint from random  # -> aufruf: randint()
+from random import randint  # -> aufruf: randint()
     \end{lstlisting}
 \end{frame}
 
