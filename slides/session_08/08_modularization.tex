@@ -1,0 +1,139 @@
+% The Slide Definitions
+\input{../theme/course_definitions}
+
+% Author and Course information
+\input{../theme/course_information}
+
+% Presentation title
+\title{Modularisierung 2.0}
+
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Rückblick: Einbinden von Externen Bibliotheken}
+
+\begin{frame}[fragile]{Vokabeln}
+Auslagern von Code in nach Verantwortlichkeiten sortierte Module und Packages ermöglicht es eine übersichtliche Code Base aufzubauen.
+\begin{itemize}
+\item Modul $:=$ Python Datei \texttt{.py}
+\item Package $:=$ \glqq Ordner \grqq von Modulen
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Importieren eines Moduls}
+    Zum Importieren eines Moduls/Package kann das \texttt{import} statement verwendet werden.
+    \begin{lstlisting}
+# Import des gesamten Inhalts eines Moduls/PKG
+# **mit** dem Namespace des importierten Moduls
+import random               # -> aufruf: random.randint()
+import random as rnd        # -> aufruf: rnd.randint()
+
+# Import des gesamten Inhalts eines Moduls/PKG
+# **in** den Namespace des importierenden Moduls
+import * from random        # -> aufruf: randint()
+
+# Import einer einzelnen Funktion
+# **in** den Namespace des importierenden Moduls
+import randint from random  # -> aufruf: randint()
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Import Hilfen}
+
+\begin{lstlisting}
+import random
+
+# Der Klassiker: help()
+help(random)
+
+# Liste alle importierten Variablen, Funktionen, und Klassen auf
+dir(random)
+
+# Gib den Speicherort des importierten Moduls aus
+print(random.__file__)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Import Pitfalls}
+Module \texttt{example.py}
+\begin{lstlisting}
+CONSTANT = 1
+
+# Code der ausgeführt wird, wenn example.py ausgeführt wird
+print("Hallo Mama, ich bin in einer Präsentation!")
+\end{lstlisting}
+
+\begin{lstlisting}
+>>> import example
+>>> Hallo Mama!
+>>>
+\end{lstlisting}
+Wie können wir es vermeiden Code beim Import auszuführen?
+\end{frame}
+
+\begin{frame}[fragile]{Boilerplate Code}
+Module \texttt{example.py}
+\begin{lstlisting}
+CONSTANT = 1
+
+# Code der nur ausgeführt wird,
+# wenn example.py direkt ausgeführt wird
+if __name__ == "__main__":
+    print("Hallo Mama, ich bin in einer Präsentation!")
+\end{lstlisting}
+
+\begin{lstlisting}
+>>> import example
+>>>
+\end{lstlisting}
+    Das in \texttt{example.py} enthaltene \texttt{print}-Statement wird nur ausgeführt, wenn \texttt{example.py} direkt ausgeführt wird.
+\end{frame}
+
+\begin{frame}[fragile]{Ein eigenes Package}
+    \begin{center}
+    \includegraphics[height=.4\textheight]{Package.png}
+    \end{center}
+    In \texttt{example.py}:
+    \begin{lstlisting}
+# Import modul a aus package 'package'
+import package.a
+
+# Import modul b aus package 'package'
+import package.b
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Tipps}
+    \begin{itemize}
+        \item Importiere nur so viel wie nötig (vermeidet Überdeckungen im Namespace)
+        \item Importiere nur von tieferen Hierarchie Leveln
+        \item Vermeide zyklische Imports (A importiert B, B importiert A)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Aufgaben}
+    \includegraphics[width=\textwidth]{Kniffel_Tabelle_1.png}
+
+    \begin{enumerate}
+        \item Erweitere die Klasse des Würfelspielers, sodass dieser 5 Würfel besitzt (siehe voherige Sessions).
+        \item Implementiere eine Scoring Funktion, die, ausgehend von 5 Resultaten (Liste) und einer Kategorie, den Wert der Resultate berechnet. Werden die Bedingungen der Kategorie nicht erfüllt, ist der Wurf 0 Punkte wert.
+    \end{enumerate}
+    \href{https://de.wikipedia.org/wiki/Kniffel}{Wikipedia: Kniffel}
+\end{frame}
+
+\begin{frame}[fragile]{Aufgaben}
+    \begin{center}
+        \includegraphics[width=.9\textwidth]{Kniffel_Tabelle_2.png}
+    \end{center}
+    \begin{enumerate}
+        \item Ergänze die Kategorien um den Dreierpasch, den Viererpasch, das Full House, die Kleine Straße, die Große Straße, Kniffel sowie Chance.
+        \item \textbf{Bonus}: Implementiere eine Funktion, die für einen Wurf den größtmöglichen Score sowie den Namen der dazugehörigen Kategorie ausgibt.
+    \end{enumerate}
+    Tipp: Vielleicht hilft dir \texttt{collections.Counter}
+\end{frame}
+
+\end{document}
