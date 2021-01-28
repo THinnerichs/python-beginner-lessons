@@ -40,20 +40,20 @@
 \begin{frame}[fragile]{enumerate}
 	\texttt{enumerate} nimmt iterable und gibt tuple von Index und Element zurück
 	\begin{lstlisting}
-		for i in range(len(my_list)-1):
-		ele = my_list[i]
-		f(ele, i%dim1)
-		
-		for i, ele in enumerate(L):
-		next\_ele = my\_list[i+1]
-		f(ele, i%dim1)
+for i in range(len(my_list)-1):
+	ele = my_list[i]
+	f(ele, i%dim1)
+
+for i, ele in enumerate(L):
+	next_ele = my_list[i+1]
+	f(ele, i%dim1)
 	\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]{map und lambda}
 	\begin{lstlisting}
 		def f(a,b):
-		return a%b + 42
+			return a%b + 42
 		
 		f = lambda a,b: a%b + 42
 	\end{lstlisting}
@@ -69,37 +69,35 @@
 
 \begin{frame}[fragile]{filter}
 	\begin{lstlisting}
-		ages = [5, 12, 17, 18, 24, 32]
-		
-		def myFunc(x):
-		if x < 18:
+ages = [5, 12, 17, 18, 24, 32]
+
+def myFunc(x):
+	if x < 18:
 		return False
-		else:
+	else:
 		return True
-		
-		adults = filter(myFunc, ages)
-		
-		for x in adults:
-		print(x) 
+
+adults = filter(myFunc, ages)
+
+for x in adults:
+	print(x) 
 	\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]{zip}
 	\begin{lstlisting}
-		>>> a = ("John", "Charles", "Mike")
-		>>> b = ("Jenny", "Christy", "Monica", "Vicky")
-		
-		>>> x = zip(a, b)
-		
-	
-		
-		#use the list() function to display a readable version of the result:
-		
-		>>> list(x)
-		[('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica')]
-		
-		>>> x = [(a_ele, b_ele) for a_ele in a for b_ele in b]
-		
+>>> a = ("John", "Charles", "Mike")
+>>> b = ("Jenny", "Christy", "Monica", "Vicky")
+
+>>> x = zip(a, b)
+
+#use the list() function to display a readable version of the result:
+
+>>> list(x)
+[('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica')]
+
+>>> x = [(a_ele, b_ele) for a_ele in a for b_ele in b]
+
 	\end{lstlisting}
 \end{frame}
 
@@ -133,16 +131,16 @@
 
 \begin{frame}[fragile]{Module einbinden}
 	\begin{lstlisting}
-		from random import randint
-		print(randint(1, 10))
-		
-		from wuerfel import *
-		d20 = Wuerfel(20)
-		print(d20.wuerfeln())
-		
-		import spieler
-		spieler = spieler.Spieler("Arndt", d20)
-		print(spieler.name)
+from random import randint
+print(randint(1, 10))
+
+from wuerfel import *
+d20 = Wuerfel(20)
+print(d20.wuerfeln())
+
+import spieler
+spieler = spieler.Spieler("Arndt", d20)
+print(spieler.name)
 	\end{lstlisting}
 \end{frame}
 
@@ -180,10 +178,10 @@
 
 \begin{frame}[fragile]{Einfaches Beispiel}
 	\begin{lstlisting}
-		from matplotlib import pyplot
-		pyplot.plot([1,2,3,4], [1,4,9,16], 'ro')
-		pyplot.axis([0, 6, 0, 20])
-		pyplot.show()
+from matplotlib import pyplot
+pyplot.plot([1,2,3,4], [1,4,9,16], 'ro')
+pyplot.axis([0, 6, 0, 20])
+pyplot.show()
 	\end{lstlisting}
 	
 	\begin{figure}[h]

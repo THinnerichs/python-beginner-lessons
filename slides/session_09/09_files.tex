@@ -31,6 +31,14 @@
     \tableofcontents
 \end{frame}
 
+\begin{frame}{Was zuletzt geschah}
+	\begin{itemize}
+		\item Module und wo sie zu finden sind
+		\item Pakete (Packages): \texttt{import, from, *}
+		\item boilerplate
+	\end{itemize}
+\end{frame}
+
 % ---- Rückblick ----
 \section{Motivation}
 
@@ -102,32 +110,152 @@ f.close()
     \end{lstlisting}
 \end{frame}
 
+
+
+
+\begin{frame}[fragile]{Dateien richtig lesen}
+\begin{lstlisting}
+f = open("test.txt", "r")
+# Liest bis zu 100 Zeichen (auch Zeilenumbrüche)
+preview = f.read(100)
+# Liest alle nachfolgenden! Zeilen in Liste
+rest = f.readlines()
+# z.B. ["Zeile 1", "Zeile 2", "Zeile 3"]
+f.close()
+\end{lstlisting}
+\pause
+\begin{lstlisting}
+with open('test.txt', 'r') as f:
+	for line in f:
+		# trennt nach jedem '\n'
+		# "Hallo Mama, Ich bin in einer Textdatei!\n"
+		greetings, message = line.strip().split(',')
+		...
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Dateien richtig schreiben}
+\begin{lstlisting}
+f = open("test.txt", "w")
+# Eine Zeile mit "Hello World" und Zeilenumbruch schreiben
+f.write("Hello World\n")
+# Danach weitere Zeilen anfügen
+zeilen = "\n".join(["Zeile 1", "Zeile 2", "Zeile 3"])
+f.write(zeilen)
+f.close()
+\end{lstlisting}
+\pause
+\begin{lstlisting}
+with open(file='test.txt', 'w') as f:
+	# entweder 
+	f.write("Hallo Kind, toll gemacht!\n")
+	# oder 
+	print("Hallo Kind, toll gemacht!\n", file=f)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Was man sonst noch mit Dateien machen kann}
+\begin{itemize}
+	\item[r] - Read - Default value. Opens a file for reading, error if the file does not exist
+	
+	\item[a] - Append - Opens a file for appending, creates the file if it does not exist
+	
+	\item[w] - Write - Opens a file for writing, creates the file if it does not exist
+	
+	\item[x] - Create - Creates the specified file, returns an error if the file exists
+	
+\end{itemize}
+Zusätzlich:
+\begin{itemize}
+	\item[t] - Text - Default value. Text mode
+	
+	\item[b] - Binary - Binary mode for e.g. images, pickled (See pickle package) files
+	
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Ein Beispiel}
+\begin{lstlisting}
+with open("demofile.txt", "rt") as f:
+	# der standardfall, muss nicht explizit genannt werden
+	...
+\end{lstlisting}
+
+\begin{lstlisting}
+...
+import pickle
+
+spieler = Spieler(wuerfel, name)
+spieler_list.append(spieler)
+
+with open(file='spielerlist.pkl', mode='wb') as f:
+	pickle.dump(spieler_liste, f)
+\end{lstlisting}
+\end{frame}
+
 % --------------------- Aufgaben -------------------------
 
 \section{Aufgaben}
 
-\begin{frame}[fragile]{Aufgaben}
+\begin{frame}[fragile]{Einige Aufgaben}
     \begin{enumerate}
-        \item Schreibe die Quadratzahlen bis 1000 Zeilenweise in eine Datei!
-        \item Erweitere das Würfelspiel so, dass der Endstand in einer Datei festgehalten wird!
-        \item Lese folgenden Inhalt aus einer Datei:
-            \begin{verbatim}
-Year,Make,Model,Length
-1997,Ford,E350,2.34
-2000,Mercury,Cougar,2.38\end{verbatim}
-            Und überführe die Inhalte in eine Liste von Dictionaries:
-            \begin{lstlisting}
-[
-    {
-        "Year": 1997, "Make": "Ford",
-        "Model": "E350", "Length": 2.34,
-    },
-    {
-        "Year": 2000,
-         ...
-    }
-]\end{lstlisting}
-    \end{enumerate}
+  		\item Downloaded \href{https://loremipsum.de/downloads/version5.txt}{https://loremipsum.de/downloads/version5.txt} von \url{loremipsum.de}
+  		\item Zähle die Wörter in diesem File
+  		\item Kopiere den Inhalt in eine andere Datei
+  		\item Lösche alle \textbf{new line character} in diesem neuen file.
+  	\end{enumerate}    
+\end{frame}
+
+\begin{frame}{Encodingszähmen leicht gemacht}
+	\begin{itemize}
+		\item Character und Zahlen werden intern durch Bitsequenzen repräsentiert
+		\pause
+		\item Gegeben eine Bitsequenz, wie soll diese interpretiert werden?
+		\pause
+		\item Header, Dateiendungen, Anderes Wissen
+		\item \texttt{UTF-8, ASCII, UTF-16, ...}
+		\item \texttt{Hex, Binary, Decimal}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+>>> int('11', base=16)
+17
+>>> int('11', base=2)
+3
+>>> hex(17)
+'0x11'
+>>> bin(11)
+'0b11'
+\end{lstlisting}
+
+\begin{lstlisting}
+with open(file='test', mode='r', encoding='utf8'):
+	...
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{ord} und \texttt{chr}}
+\texttt{chr(i)}\\
+Return the string representing a character whose Unicode code point is the integer i. For example, chr(97) returns the string 'a', while chr(8364) returns the string '€'. This is the inverse of ord().
+\begin{lstlisting}
+>>> ord('a')
+97
+>>> chr(97)
+'a'
+>>> ord('A')
+65
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Einige Aufgaben}
+\begin{enumerate}
+	\item Schreibe ein Programm, welches eine Caesar Chiffre beschreibt. (\texttt{caesar\_chiffre(text, offset)})
+	\item Schreibe eine Liste aller geraden Quadratzahlen bis 1000 in eine Datei und lese diese Liste von der Datei wieder ein
+	\item Lese die Dokumentation von \texttt{pickle}, und schreibe ein Python Programm, welches ein Spielerobject abspeichert und lädt. 
+\end{enumerate}
 \end{frame}
 
 \end{document}
